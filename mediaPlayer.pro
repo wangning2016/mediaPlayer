@@ -8,6 +8,7 @@ CCFLAG += -lpthread
 
 
 INCLUDEPATH+=/usr/local/include
+INCLUDEPATH +=/usr/local/include/SDL2
 
 
 
@@ -16,6 +17,14 @@ LIBS += -L/usr/local/lib -lSDL2
 QMAKE_CXXFLAGS += -Wno-unused-function
 QMAKE_CXXFLAGS += -Wno-unused-parameter
 QMAKE_CXXFLAGS += -Wno-old-style-cast
+
+
+
+
+INCLUDEPATH+=/usr/local/include
+
+LIBS += -L/usr/local/lib -lavformat -lavcodec -lavdevice -lavfilter -lavutil -lswresample -lswscale -lSDL2
+
 
 DESTDIR = ./bin/
 MOC_DIR = ./temp/moc
@@ -29,10 +38,15 @@ CONFIG += plugin
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cmdutils.c \
+    ffplay.c \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    cmdutils.h \
+    config.h \
+    ffplay.h \
     mainwindow.h
 
 FORMS += \
